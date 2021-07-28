@@ -1,7 +1,7 @@
 ////task1
 
 // const name: string = "generator safe network";
-let price: number = 1000;
+// let price: number = 1000;
 // console.log(`you bought ${name}, price${price}`)
 
 ///task 2
@@ -77,19 +77,20 @@ let price: number = 1000;
 //     }
 // };
 
-///task 6
-let total = 0;
-do {
-    let input: string | null | number = prompt('Enter number!', '1,2,3')
-    if (!input) break
-    input = Number(input);
-    if (Number.isNaN(input)) {
-        console.log('NaN')
-        continue;
-    }
-    total += input;
-} while (true);
-console.log(`total ${total}`)
-
-
-export {price}
+// ///task 6
+// let total = 0;
+// do {
+//     let input: string | null | number = prompt('Enter number!', '1,2,3')
+//     if (!input) break
+//     input = Number(input);
+//     if (Number.isNaN(input)) {
+//         console.log('NaN')
+//         continue;
+//     }
+//     total += input;
+// } while (true);
+// console.log(`total ${total}`)
+//
+//
+// export {price}
+export {}
