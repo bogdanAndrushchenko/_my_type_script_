@@ -1,3 +1,4 @@
+const connect ='connect';
 ////task1
 
 // const name: string = "generator safe network";
@@ -92,5 +93,5 @@
 // console.log(`total ${total}`)
 //
 //
-// export {price}
-export {}
+
+export {connect}

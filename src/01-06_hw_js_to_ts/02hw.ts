@@ -1,15 +1,15 @@
 const connect = 'connect';
 
 /////task 1
-type LogItems = (array: string[] | number[]) => void;
-
-const logItems: LogItems = (array) => {
-    for (let i = 0; i < array.length; i += 1) {
-        console.log(`${i + 1} - ${array[i]}`)
-    }
-};
-logItems(["Mango", "Poly", "Ajax", "Kiwi", "John", "Vasja"]);
-logItems([5, 10, 15, 20, 25, 30, 35, 40, 45, 50]);
+// type LogItems = (array: string[] | number[]) => void;
+//
+// const logItems: LogItems = (array) => {
+//     for (let i = 0; i < array.length; i += 1) {
+//         console.log(`${i + 1} - ${array[i]}`)
+//     }
+// };
+// logItems(["Mango", "Poly", "Ajax", "Kiwi", "John", "Vasja"]);
+// logItems([5, 10, 15, 20, 25, 30, 35, 40, 45, 50]);
 
 ////task 2
 // interface CalculateEngravingPrice  {
@@ -161,4 +161,4 @@ console.log(addLogin(logins, 'robotGoogles')); // 'Такой логин уже 
 console.log(addLogin(logins, 'Zod')); // 'Ошибка! Логин должен быть от 4 до 16 символов'
 console.log(addLogin(logins, 'jqueryisextremelyfast')); // 'Ошибка! Логин должен быть от 4 до 16 символов'
 console.log(logins)
-export {connect, logItems}
+export {connect}
