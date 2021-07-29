@@ -159,87 +159,87 @@ const connect = "connect 03"
 
 ///task 7
 
-enum TypeTransaction {
-    DEPOSIT = 'deposit',
-    WITHDRAW = 'withdraw',
-    ERROR = 'not found'
-}
-
-interface ITransaction {
-    id: number
-    type: TypeTransaction.DEPOSIT | TypeTransaction.WITHDRAW
-    amount: number
-}
-
-interface IAccount {
-    balance: number
-    transactions: ITransaction[]
-
-    _createTransaction(amount: number, type: TypeTransaction.DEPOSIT | TypeTransaction.WITHDRAW): ITransaction
-
-    deposit(amount: number): void
-
-    withdraw(amount: number): void
-
-    getBalance(): number
-
-    getTransactionDetails(iD: number): ITransaction | TypeTransaction.ERROR
-
-    getTransactionTotal(type: TypeTransaction.DEPOSIT | TypeTransaction.WITHDRAW): number
-
-}
-
-const account: IAccount = {
-    balance: 0,
-    transactions: [],
-
-    _createTransaction(amount, type) {
-        const id = Math.round(Math.random()*100)
-        const transaction = {id, type, amount};
-        return transaction
-    },
-
-    deposit(amount) {
-        this.transactions.push(this._createTransaction(amount, TypeTransaction.DEPOSIT))
-        this.balance = this.balance + amount
-    },
-
-    withdraw(amount) {
-        if (this.balance > amount) {
-            this.transactions.push(this._createTransaction(amount, TypeTransaction.WITHDRAW))
-            this.balance = this.balance - amount
-        }else
-        console.log('снятие такой суммы не возможно, недостаточно средств')
-    },
-
-    getBalance() {
-        return this.balance
-    },
-
-    getTransactionDetails(iD) {
-        const transaction: ITransaction | undefined = this.transactions.find(({id}) => id === iD)
-        return transaction ? transaction : TypeTransaction.ERROR
-    },
-
-    getTransactionTotal(Type) {
-        return this.transactions
-            .filter(({type}) => type === Type)
-            .reduce((a, {amount}) => a + amount, 0)
-    },
-};
-console.log(account.withdraw(37),'withdraw')
-console.log(account.deposit(126),'deposit')
-console.log(account.deposit(426),'deposit')
-console.log(account.deposit(26),'deposit')
-console.log(account.deposit(226),'deposit')
-console.log(account.getBalance(),'getBalance')
-console.log(account.withdraw(27),'withdraw')
-console.log(account.withdraw(37),'withdraw')
-console.log(account.withdraw(47),'withdraw')
-console.log(account.withdraw(57),'withdraw')
-console.log(account.getBalance(),'getBalance')
-console.log(account.transactions,'transactions')
-console.log(account.getTransactionTotal(TypeTransaction.DEPOSIT),'Total')
-console.log(account.getTransactionTotal(TypeTransaction.WITHDRAW),'Total')
-console.log(account.getTransactionDetails(95))
+// enum TypeTransaction {
+//     DEPOSIT = 'deposit',
+//     WITHDRAW = 'withdraw',
+//     ERROR = 'not found'
+// }
+//
+// interface ITransaction {
+//     id: number
+//     type: TypeTransaction.DEPOSIT | TypeTransaction.WITHDRAW
+//     amount: number
+// }
+//
+// interface IAccount {
+//     balance: number
+//     transactions: ITransaction[]
+//
+//     _createTransaction(amount: number, type: TypeTransaction.DEPOSIT | TypeTransaction.WITHDRAW): ITransaction
+//
+//     deposit(amount: number): void
+//
+//     withdraw(amount: number): void
+//
+//     getBalance(): number
+//
+//     getTransactionDetails(iD: number): ITransaction | TypeTransaction.ERROR
+//
+//     getTransactionTotal(type: TypeTransaction.DEPOSIT | TypeTransaction.WITHDRAW): number
+//
+// }
+//
+// const account: IAccount = {
+//     balance: 0,
+//     transactions: [],
+//
+//     _createTransaction(amount, type) {
+//         const id = Math.round(Math.random()*100)
+//         const transaction = {id, type, amount};
+//         return transaction
+//     },
+//
+//     deposit(amount) {
+//         this.transactions.push(this._createTransaction(amount, TypeTransaction.DEPOSIT))
+//         this.balance = this.balance + amount
+//     },
+//
+//     withdraw(amount) {
+//         if (this.balance > amount) {
+//             this.transactions.push(this._createTransaction(amount, TypeTransaction.WITHDRAW))
+//             this.balance = this.balance - amount
+//         }else
+//         console.log('снятие такой суммы не возможно, недостаточно средств')
+//     },
+//
+//     getBalance() {
+//         return this.balance
+//     },
+//
+//     getTransactionDetails(iD) {
+//         const transaction: ITransaction | undefined = this.transactions.find(({id}) => id === iD)
+//         return transaction ? transaction : TypeTransaction.ERROR
+//     },
+//
+//     getTransactionTotal(Type) {
+//         return this.transactions
+//             .filter(({type}) => type === Type)
+//             .reduce((a, {amount}) => a + amount, 0)
+//     },
+// };
+// console.log(account.withdraw(37),'withdraw')
+// console.log(account.deposit(126),'deposit')
+// console.log(account.deposit(426),'deposit')
+// console.log(account.deposit(26),'deposit')
+// console.log(account.deposit(226),'deposit')
+// console.log(account.getBalance(),'getBalance')
+// console.log(account.withdraw(27),'withdraw')
+// console.log(account.withdraw(37),'withdraw')
+// console.log(account.withdraw(47),'withdraw')
+// console.log(account.withdraw(57),'withdraw')
+// console.log(account.getBalance(),'getBalance')
+// console.log(account.transactions,'transactions')
+// console.log(account.getTransactionTotal(TypeTransaction.DEPOSIT),'Total')
+// console.log(account.getTransactionTotal(TypeTransaction.WITHDRAW),'Total')
+// console.log(account.getTransactionDetails(95))
 export {connect}
