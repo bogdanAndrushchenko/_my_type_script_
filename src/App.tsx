@@ -10,11 +10,11 @@ console.log(connect)
 // const names:Array<string> =['ras','dva','3']
 
 function App() {
-  return (
-    <div >
-рудщ
-    </div>
-  );
+    return (
+        <div>
+            TypeScript
+        </div>
+    );
 }
 
 export default App;
