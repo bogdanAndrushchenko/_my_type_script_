@@ -41,35 +41,41 @@ const connect = "connect 05"
  */
 type GetInfo = () => string
 
-interface IUser {
+interface IUserParams {
     name: string,
     age: number,
     followers: number,
 }
 
-class User {
-    private name: string
-    private age: number
-    private followers: number
+interface IUser {
+    name: string
+    age: number
+    followers: number
+    getInfo: GetInfo
+}
 
-    // getInfo(): GetInfo
 
-    constructor({name, age, followers}: IUser) {
+class User implements IUser {
+    name: string
+    age: number
+    followers: number
+
+    constructor({name, age, followers}: IUserParams) {
         this.name = name
         this.age = age
         this.followers = followers
 
     }
 
-    getInfo: GetInfo = () => {
+    getInfo = () => {
         return `User ${this.name} is ${this.age} years old and has ${this.followers} followers`
     }
 }
 
-const user1 = new User({name: 'vasja', age: 5, followers: 77})
-const user2 = new User({name: 'scjopa', age: 7, followers: 99})
-// console.log(user1.getInfo(), "user1")
-// console.log(user2.getInfo(), "user1")
+const user1:IUser = new User({name: 'vasja', age: 5, followers: 77})
+const user2:IUser = new User({name: 'scjopa', age: 7, followers: 99})
+console.log(user1.getInfo(), "user1")
+console.log(user2.getInfo(), "user1")
 
 //// task3
 /**
@@ -87,7 +93,14 @@ type GetItems = () => string[]
 type AddItem = (item: string) => void
 type RemoveItem = (item: string) => void
 
-class Storage {
+interface IStorage {
+    items: string[]
+    getItems: GetItems
+    addItem: AddItem
+    removeItem: RemoveItem
+}
+
+class Storage implements IStorage {
     items: string[]
 
     constructor(items: string[]) {
@@ -105,9 +118,9 @@ class Storage {
 }
 
 const stor1 = new Storage(['qwe', 'ewq', 'wer'])
-// console.log(stor1.addItem('per'))
-// console.log(stor1.removeItem('peg'))
-// console.log(stor1.removeItem('per'))
-// console.log(stor1.getItems())
+console.log(stor1.addItem('per'))
+console.log(stor1.removeItem('peg'))
+console.log(stor1.removeItem('per'))
+console.log(stor1.getItems())
 
 export {connect}
