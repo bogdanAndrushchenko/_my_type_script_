@@ -72,8 +72,8 @@ class User implements IUser {
     }
 }
 
-const user1:IUser = new User({name: 'vasja', age: 5, followers: 77})
-const user2:IUser = new User({name: 'scjopa', age: 7, followers: 99})
+const user1: IUser = new User({name: 'vasja', age: 5, followers: 77})
+const user2: IUser = new User({name: 'scjopa', age: 7, followers: 99})
 console.log(user1.getInfo(), "user1")
 console.log(user2.getInfo(), "user1")
 
@@ -124,3 +124,155 @@ console.log(stor1.removeItem('per'))
 console.log(stor1.getItems())
 
 export {connect}
+
+////task 4
+/**
+ * Напиши класс StringBuilder. На вход он получает один параметр - строку, которую записывает в свойство _value.
+
+ Добавь классу следующий функционал:
+
+ Геттер value - возвращает текущее значение поля _value
+ Метод append(str) - получает парметр str (строку) и добавляет ее в конец _value
+ Метод prepend(str) - получает парметр str (строку) и добавляет ее в начало value
+ Метод pad(str) - получает парметр str (строку) и добавляет ее в начало и в конец _value
+ * */
+
+type Added = (str: string) => void
+
+interface IStringBuilder {
+    value: string
+    append: Added
+    prepend: Added
+    pad: Added
+}
+
+class StringBuilder implements IStringBuilder {
+    private _value: string
+
+    constructor(value: string) {
+        this._value = value
+    }
+
+    get value(): string {
+        return this._value
+    }
+
+    append: Added = (str) => this._value = this._value + str
+    prepend: Added = (str) => this._value = str + this._value
+    pad: Added = (str) => this._value = str + this._value + str
+}
+
+const builder: IStringBuilder = new StringBuilder('.');
+
+// builder.append('^');
+// console.log(builder.value); // '.^'
+//
+// builder.prepend('^');
+// console.log(builder.value); // '^.^'
+//
+// builder.pad('=');
+// console.log(builder.value); // '=^.^='
+
+////task 5
+interface ICarParams {
+    speed?: number
+    price: number
+    maxSpeed: number
+    isOn?: boolean
+    distance?: number
+}
+
+interface ICar extends ICarParams {
+    // price(pr: number): void
+
+    turnOn(): void
+
+    turnOff(): void
+
+    accelerate(value: number): void
+
+    decelerate(value: number): void
+
+    drive(hours: number): void
+}
+
+class Car implements ICar {
+    static getSpecs = (car: ICarParams) => {
+        console.log(car.maxSpeed, car.speed, car.isOn, car.distance, car.price)
+    }
+
+    speed: number
+    private _price: number
+    maxSpeed: number
+    isOn: boolean
+    distance: number
+
+    constructor({
+                    speed = 0,
+                    price,
+                    maxSpeed,
+                    isOn = false,
+                    distance = 0
+                }: ICarParams) {
+        this.speed = speed
+        this._price = price
+        this.maxSpeed = maxSpeed
+        this.isOn = isOn
+        this.distance = distance
+    }
+
+    get price(): number {
+        return this._price
+    }
+
+    set price(pr: number) {
+        this._price = pr
+    }
+
+    turnOn(): void {
+        this.isOn = true
+    }
+
+    turnOff(): void {
+        this.isOn = false
+        this.speed = 0
+    }
+
+    accelerate(value: number): void {
+        if (this.speed + value <= this.maxSpeed) {
+            this.speed = this.speed + value
+        }
+    }
+
+
+    decelerate(value: number): void {
+        if (this.speed - value >= 0) {
+            this.speed = this.speed - value
+        }
+    }
+
+    drive(hours: number): void {
+        if (!this.isOn) return
+        this.distance = this.distance + this.speed * hours
+    }
+}
+
+const mustang: ICar = new Car({maxSpeed: 200, price: 2000});
+
+mustang.turnOn();
+mustang.accelerate(50);
+mustang.drive(2);
+
+Car.getSpecs(mustang);
+// maxSpeed: 200, speed: 50, isOn: true, distance: 100, price: 2000
+
+mustang.decelerate(20);
+mustang.drive(1);
+mustang.turnOff();
+
+Car.getSpecs(mustang);
+// maxSpeed: 200, speed: 0, isOn: false, distance: 130, price: 2000
+
+console.log(mustang.price); // 2000
+mustang.price = 4000;
+console.log(mustang.price); // 4000
