@@ -20,6 +20,10 @@ const getInactiveUsers = (users: IArray[]) => {
 const getUserWithEmail = (users:IArray[], email:string) => {
     return <IArray>users.find(el => el.email === email)
 };
+const getUsersWithAge = (users:IArray[], min:number, max:number):IArray[] => {
+    return users.filter(el=>el.age>=min && el.age<=max)
+};
+
 
 const s: string[] = getUsersWithGender(arr, 'male')
 console.log(s, 's')
@@ -28,3 +32,5 @@ console.log(getUsersWithEyeColor(arr, 'blue'));
 console.log(getInactiveUsers(arr), '!isActive');
 console.log(getUserWithEmail(arr, 'shereeanthony@kog.com'));
 console.log(getUserWithEmail(arr, 'elmahead@omatom.com'));
+console.log(getUsersWithAge(arr, 20, 30));
+console.log(getUsersWithAge(arr, 30, 40));
