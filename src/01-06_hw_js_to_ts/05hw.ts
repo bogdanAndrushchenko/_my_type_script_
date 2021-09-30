@@ -1,4 +1,5 @@
 const connect = "connect 05"
+export {connect}
 ////TypeScript Classes time code 1.36.55
 /// task 1
 // interface IParam {
@@ -123,7 +124,6 @@ console.log(stor1.removeItem('peg'))
 console.log(stor1.removeItem('per'))
 console.log(stor1.getItems())
 
-export {connect}
 
 ////task 4
 /**
