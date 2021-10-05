@@ -23,6 +23,10 @@ const getUserWithEmail = (users: IArray[], email: string) => {
 const getUsersWithAge = (users: IArray[], min: number, max: number): IArray[] => {
     return users.filter(el => el.age >= min && el.age <= max)
 };
+const calculateTotalBalance  = <T extends IArray>(users:T[]) => {
+    return users.reduce((a,e)=>a+e.balance,0)
+};
+
 
 
 const s = getUsersWithGender(arr, 'male')
@@ -34,6 +38,7 @@ console.log(getUserWithEmail(arr, 'shereeanthony@kog.com'));
 console.log(getUserWithEmail(arr, 'elmahead@omatom.com'));
 console.log(getUsersWithAge(arr, 20, 30));
 console.log(getUsersWithAge(arr, 30, 40));
+console.log(calculateTotalBalance(arr));
 const a = {a: 1, b: 2}
 const b = {a: 1, b: 2}
 console.log(Object.is(1, b))
